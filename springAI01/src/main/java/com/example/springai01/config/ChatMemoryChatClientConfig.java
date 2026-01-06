@@ -24,10 +24,12 @@ public class ChatMemoryChatClientConfig {
 
     @Bean("chatMemoryChatClient")
     public ChatClient chatClient(ChatClient.Builder chatClientBuilder, ChatMemory chatMemory) {
+        ChatOptions chatOptions =  ChatOptions.builder().maxTokens(1000).build();
         Advisor loggerAdvisor = new SimpleLoggerAdvisor();
         Advisor memoryAdvisor = MessageChatMemoryAdvisor.builder(chatMemory).build();
         return chatClientBuilder
                 .defaultAdvisors(List.of(loggerAdvisor, memoryAdvisor))
+                .defaultOptions(chatOptions)
                 .build();
     }
 }
