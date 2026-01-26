@@ -1,0 +1,4 @@
+package com.example.springai01.repository;
+
+public interface HelpDeskTicketRepository {
+}
